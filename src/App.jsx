@@ -4,18 +4,27 @@ import { fetchShows } from './api/fetchShows';
 import { CloseIcon } from './icons/icon';
 import ShowList from './components/showList';
 import { useStore } from './store/store';
+import {FaStar} from 'react-icons/fa'
+import GotoTop from './ui-elements/GoToTop';
+
 
 const App = () => {
     const[shows,setShows]=useState([])
     const[popup,setPopup]=useState(false)
+    const[isLoading,setIsLoading]=useState(false)
     const showDetails=useStore(store=>store.showDetails)
     const details= useMemo(() => showDetails, [showDetails])
 
     const fetchShow=async()=>{
+         try{
+            setIsLoading(true)
+            const show= await fetchShows()
+            setShows(show)
+            setIsLoading(false)
+             console.log(show)
+         }catch(error){
 
-        const show= await fetchShows()
-          setShows(show)
-          console.log(show)
+         }
     }
 
 
@@ -32,16 +41,37 @@ useEffect(()=>{
     }
 },[details])
 
+const originalSummText=details.summary
+const itemsToRemoveFromSumm=['<p>','<b>','</b>','</p>','<br />','<br/>']
+const removeItems=(text,items)=>{
+    let textUpdate=text
+    items.forEach(items=>{
+        textUpdate=textUpdate?.replace(new RegExp(items,'g'),' ')
+    })
+    return textUpdate
+}
+const newTextSumm=removeItems(originalSummText,itemsToRemoveFromSumm)
+
   return (
     <>
-   {popup && (<div id="backdrop" onClick={()=>setPopup(false)} className="z-[50] fixed left-0 right-0 top-0 bottom-0 backdrop-brightness-75 max-md:backdrop-brightness-50 !h-full !w-full" />)}
-    {popup && (<div className='!fixed -translate-x-2/4 -translate-y-2/4 z-[200] shadow-2xl left-2/4 top-1/2 !w-[75%] max-md:!w-[90%]'>  <div className='w-full bg-white rounded-md relative animate-[pop_0.4s_ease-out]'>
+   {popup && (<div id="backdrop" onClick={()=>setPopup(false)} className="z-[50] fixed left-0 right-0 top-0 bottom-0 backdrop-brightness-50 max-md:backdrop-brightness-50 !h-full !w-full" />)}
+    {popup && (<div className='!fixed -translate-x-2/4 -translate-y-2/4 z-[200] shadow-2xl left-2/4 top-1/2 !w-[75%] max-lg:!w-[85%] max-md:!w-[90%]'>  <div className='w-full bg-slate-100 rounded-md relative animate-[pop_0.4s_ease-out]'>
        <header className='w-full'>
         <div className="w-full px-3 py-2 flex items-center gap-2"><div className=' text-3xl font-bold'>{details.name}</div></div>
         <div onClick={()=>setPopup(false)} className='group absolute right-3 top-2 p-2 rounded-md cursor-pointer'><CloseIcon pathClassName='!fill-slate-700 group-hover:!fill-red-600 !stroke-slate-900' className='!w-3'/></div>
         </header>
-       <div className='text-black px-3 pb-10'>
+       <div className='text-black px-3 max-md:flex-col select-none pr-5 pb-4 flex items-start gap-5 relative'>
+        <div id='genres' className='md:absolute flex items-center gap-2 max-lg:gap-1 [&>*]:max-lg:text-sm  right-10 [&>*]:p-1 [&>*]:text-white [&>*]:bg-[#000000de] [&>*]:px-3 [&>*]:rounded-full'>
+            {details.genres.map(item=><span>{item}</span>)}
+        </div>
         <img className='w-[30%] rounded-md' src={details.image} alt={details.name}/>
+
+        <div id='details' className='text-black drop-shadow-sm flex flex-col gap-3'>
+          <div className='text-xl'><span>Rating:</span><div className='flex items-center gap-2'><FaStar className='text-[#f5c518] text-5xl max-lg:text-2xl'/>
+          <span className='text-2xl font-bold'>{details.rating}<span className='text-xl text-neutral-600'>/10</span></span></div></div>
+          <div className='text-xl'><span>Date:</span><div className='text-2xl font-bold'>{details.premiered}</div></div>
+          <div className='text-xl'><span>About:</span><div className='text-xl font-bold h-[16rem] overflow-y-scroll'>{newTextSumm}</div></div>
+        </div>
        </div>
     </div></div>)}
    
@@ -70,9 +100,10 @@ useEffect(()=>{
         <button className='p-2 px-6 text-black bg-white rounded-r-md hover:bg-black hover:text-white'>Search</button>
         </div>
     </div>
-        <ShowList shows={shows}/>
+        <ShowList shows={shows} isLoading={isLoading}/>
     </div>
     </div>
+    <GotoTop/>
     </>
   )
 }
