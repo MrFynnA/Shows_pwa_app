@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useMemo} from 'react'
 import "./styles.css";
 import { fetchShows } from './api/fetchShows';
 import { CloseIcon } from './icons/icon';
 import ShowList from './components/showList';
+import { useStore } from './store/store';
 
 const App = () => {
     const[shows,setShows]=useState([])
     const[popup,setPopup]=useState(false)
+    const showDetails=useStore(store=>store.showDetails)
+    const details= useMemo(() => showDetails, [showDetails])
 
     const fetchShow=async()=>{
 
@@ -20,20 +23,29 @@ useEffect(()=>{
     fetchShow()
 },[])
 
+
+useEffect(()=>{
+    if(Object.keys(details).length!==0){
+        setPopup(true)
+    }else{
+        setPopup(false)
+    }
+},[details])
+
   return (
     <>
    {popup && (<div id="backdrop" onClick={()=>setPopup(false)} className="z-[50] fixed left-0 right-0 top-0 bottom-0 backdrop-brightness-75 max-md:backdrop-brightness-50 !h-full !w-full" />)}
-    {popup && (<div className='!fixed -translate-x-2/4 -translate-y-2/4 z-[200] shadow-2xl left-2/4 top-[40%] !w-[75%] max-md:!w-[90%]'>  <div className='w-full h-[25rem] bg-white rounded-md relative animate-[pop_0.4s_ease-out]'>
+    {popup && (<div className='!fixed -translate-x-2/4 -translate-y-2/4 z-[200] shadow-2xl left-2/4 top-1/2 !w-[75%] max-md:!w-[90%]'>  <div className='w-full bg-white rounded-md relative animate-[pop_0.4s_ease-out]'>
        <header className='w-full'>
-        <div className="w-full px-3 py-2 flex items-center gap-2"><div className=' text-xl font-bold'>{'this movie'}</div></div>
+        <div className="w-full px-3 py-2 flex items-center gap-2"><div className=' text-3xl font-bold'>{details.name}</div></div>
         <div onClick={()=>setPopup(false)} className='group absolute right-3 top-2 p-2 rounded-md cursor-pointer'><CloseIcon pathClassName='!fill-slate-700 group-hover:!fill-red-600 !stroke-slate-900' className='!w-3'/></div>
         </header>
-       <div>
-        jhgfdghjklkjhgf
+       <div className='text-black px-3 pb-10'>
+        <img className='w-[30%] rounded-md' src={details.image} alt={details.name}/>
        </div>
     </div></div>)}
    
-    <div className='w-full bg-[#000000dc] text-white'>
+    <div className='w-full  text-white'>
     <header className='w-full fixed top-0 py-5 bg-[rgba(63,63,63,0.67)] z-50 flex justify-center'>
     <div className='w-[90%] flex items-center justify-between'>
         <div id='sitetitle' className='font-bold text-white font-sans text-2xl'>
