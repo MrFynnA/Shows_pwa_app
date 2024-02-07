@@ -98,7 +98,7 @@ const genres=[
   return (
     <>
    {popup && (<div id="backdrop" onClick={()=>setPopup(false)} className="z-[50] fixed left-0 right-0 top-0 bottom-0 backdrop-brightness-50 max-md:backdrop-brightness-50 !h-full !w-full" />)}
-    {popup && (<div className='!fixed -translate-x-2/4 -translate-y-2/4 z-[200] shadow-2xl left-2/4 top-1/2 !w-[75%] max-lg:!w-[85%] max-md:!w-[90%]'>  <div className='w-full bg-slate-100 rounded-md relative animate-[pop_0.4s_ease-out] max-md:scale-[.8]'>
+    {popup && (<div className='!fixed -translate-x-2/4 -translate-y-2/4 z-[200] shadow-2xl left-2/4 top-1/2 !w-[75%] max-lg:!w-[85%] max-md:!w-full'>  <div className='w-full bg-slate-100 rounded-md relative animate-[pop_0.4s_ease-out] max-md:scale-[.8]'>
        <header className='w-full md:pl-5 pl-2 select-none'>
         <div className="w-full  py-2 flex items-center gap-2"><div className=' text-3xl max-lg:text-2xl font-bold'>{details.name}</div></div>
         <div onClick={()=>setPopup(false)} className='group absolute right-3 max-md:right-1 top-2 p-2 rounded-md cursor-pointer'><CloseIcon pathClassName='!fill-slate-700 group-hover:!fill-red-600 !stroke-slate-900' className='!w-3 max-lg:!w-4'/></div>
