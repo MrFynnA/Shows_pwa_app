@@ -9,8 +9,10 @@ const Show = (props) => {
          premiered:items.premiered,
          rating:items.rating.average,
          summary:items.summary,
-         genres:items.genres
+         genres:items.genres,
+         link:items.url
     }
+    // console.log(items?.genres.split(','))
     const setShow=useStore(store=>store.setShowDetails)
     const setMovieDetails=()=>{
         setShow(showDetails)
