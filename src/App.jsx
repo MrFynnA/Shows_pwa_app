@@ -13,6 +13,7 @@ const App = () => {
     const[shows,setShows]=useState([])
     const[popup,setPopup]=useState(false)
     const[searchValue,setSearchValue]=useState('')
+    const[find,setFind]=useState(false)
     const[isLoading,setIsLoading]=useState(false)
     const showDetails=useStore(store=>store.showDetails)
     const setGenre=useStore(store=>store.setGenre)
@@ -84,6 +85,7 @@ const submitHandler=(event)=>{
 //   console.log(searchValue)
      setGenre('')
     setSearch(searchValue)
+    setFind(true)
 }
 const genres=[
     'All',
@@ -142,9 +144,14 @@ const genres=[
                 if(idx===0){
                 setGenre('')
                 setSearch('')
+                setFind(false)
+                setSearchValue('')
                 }else{
 
                     setGenre(item)
+                    setSearch('')
+                    setSearchValue('')
+                    setFind(false)
                 }
                 
                 }}>{item}</span>)}
@@ -161,7 +168,7 @@ const genres=[
         ):(
             <form onSubmit={submitHandler} id='search-section' className='flex w-[35%] max-lg:w-[55%] max-md:w-full'>
             <div className='w-full max-md:w-full max-lg:w-full'>
-                <input onChange={(e)=>setSearchValue(e.target.value)} type='text' placeholder='search your favorite show...' className='w-full p-2 rounded-l-md border-r-2 border-gray-300 outline-none placeholder:text-gray-600 focus:border-black focus:ring-1 focus:ring-black text-black bg-gray-300 transition-colors duration-[0.5s] px-4'/>
+                <input onChange={(e)=>setSearchValue(e.target.value)} type='text' placeholder='search your favorite show...' className='w-full p-2 rounded-l-md border-r-2 border-gray-300 outline-none placeholder:text-gray-600 focus:border-black focus:ring-1 focus:ring-black text-black bg-gray-300 transition-colors duration-[0.5s] px-4' value={searchValue}/>
             </div>
             <button className='p-2 px-6 text-black bg-white rounded-r-md hover:bg-black hover:text-white' type='submit'>Search</button>
             </form>  
@@ -169,8 +176,13 @@ const genres=[
         
         }
     </div>
-    {searchTerm && <div className='-mt-10 w-[90%] flex items-center gap-10 max-md:gap-6'><Backbtn onClick={()=>setSearch('')}/>showing results for "{searchTerm}"</div>}
+    {searchTerm && <div className='-mt-10 w-[90%] flex items-center gap-8 max-md:gap-6'><Backbtn onClick={()=>{
+        setSearch('')
+        setFind(false)
+
+        }}/>showing results for "{searchTerm}"</div>}
         <ShowList shows={shows} isLoading={isLoading}/>
+        {searchTerm && Object.keys(details).length===0 && <div className='text-4xl max-lg:hidden'>Sorry there are no results for this search "{searchTerm && searchTerm.length >5 ? searchTerm.slice(0,5)+'...':searchTerm}"</div>}
     </div>
     </div>
     <GotoTop/>
