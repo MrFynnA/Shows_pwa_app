@@ -151,7 +151,7 @@ const genres=[
         {isLoading?(
         <div id='search-skeleton' className='flex w-[35%] max-lg:w-[55%] max-md:w-full rounded-md bg-light-white animate-pulse select-none'>
         <div className='w-full max-md:w-full max-lg:w-full'>
-            <input type='text' className='w-full p-2 rounded-l-md border-r-2 border-transparent outline-none text-transparent bg-transparent px-4'/>
+            <input type='text' className='w-full p-2 rounded-l-md border-r-2 !rounded-r-none border-transparent outline-none text-transparent bg-transparent px-4'/>
         </div>
         <button className='p-2 px-6 select-none text-transparent bg-transparent rounded-r-md'>Search</button>
         </div>
