@@ -7,12 +7,13 @@ const ShowList = (props) => {
     const {shows,isLoading}=props
     const genre=useStore(store=>store.genre)
     const searchValue=useStore(store=>store.searchTerm)
+    // const seaGenre=useStore(store=>store.setGenre)
     const numShows=Array(200).fill(1)
     let showItems=shows
     if(genre){
       showItems=shows?.filter(items=>items?.genres.join(', ').includes(genre))
     }else if(searchValue){
-      console.log(searchValue)
+      // console.log(searchValue)
       showItems=shows?.filter(items=> items.name.toLowerCase().includes(searchValue.toLowerCase()))
     }
 

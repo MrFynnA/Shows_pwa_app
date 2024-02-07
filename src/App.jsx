@@ -47,7 +47,7 @@ const App = () => {
             const show= await fetchShows()
             setShows(show)
             setIsLoading(false)
-             console.log(show)
+            //  console.log(show)
          }catch(error){
 
          }
@@ -79,7 +79,8 @@ const removeItems=(text,items)=>{
 const newTextSumm=removeItems(originalSummText,itemsToRemoveFromSumm)
 const submitHandler=(event)=>{
     event.preventDefault()
-  console.log(searchValue)
+//   console.log(searchValue)
+     setGenre('')
     setSearch(searchValue)
 }
 const genres=[
@@ -138,6 +139,7 @@ const genres=[
             {genres && genres?.map((item,idx)=><span className={`${genre===item?'!bg-black !drop-shadow-md':''} ${genre==='' && idx===0 && '!bg-black !drop-shadow-md'}`} key={idx} onClick={()=>{
                 if(idx===0){
                 setGenre('')
+                setSearch('')
                 }else{
 
                     setGenre(item)
