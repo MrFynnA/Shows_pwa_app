@@ -182,7 +182,7 @@ const genres=[
 
         }}/>showing results for "{searchTerm}"</div>}
         <ShowList shows={shows} isLoading={isLoading}/>
-        {searchTerm && Object.keys(details).length===0 && <div className='text-4xl max-lg:hidden'>Sorry there are no results for this search "{searchTerm && searchTerm.length >5 ? searchTerm.slice(0,5)+'...':searchTerm}"</div>}
+        {searchTerm && Object.keys(details).length===0 && <div className='text-4xl max-lg:hidden'>Sorry there are no results for this search "{searchTerm && searchTerm.length > 5 ? searchTerm.slice(0,5)+'...':searchTerm}"</div>}
     </div>
     </div>
     <GotoTop/>
