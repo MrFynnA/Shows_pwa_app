@@ -6,6 +6,7 @@ import { useStore } from './store/store';
 import {FaStar} from 'react-icons/fa'
 import {FaPlay} from 'react-icons/fa'
 import GotoTop from './ui-elements/GoToTop';
+import siteLogo from './siteLogo/showhub.png'
 
 
 const App = () => {
@@ -120,10 +121,10 @@ const genres=[
     </div>)}
    
     <div className='w-full  text-white'>
-    <header className='w-full fixed top-0 py-5 bg-[rgba(63,63,63,0.67)] z-50 flex justify-center'>
+    <header className='w-full fixed top-0 py-4 bg-[rgba(63,63,63,0.67)] z-50 flex justify-center'>
     <div className='w-[90%] flex items-center justify-between'>
-        <div id='sitetitle' className='font-bold text-white font-sans text-2xl'>
-   SHOW HUB
+        <div id='sitetitle' className='font-bold text-white font-sans text-2xl flex items-center gap-2'>
+      <img src={siteLogo} alt='showHUB' className='w-8'/>SHOW HUB
         </div>
         </div>
     </header>
