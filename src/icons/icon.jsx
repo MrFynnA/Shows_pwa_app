@@ -5,6 +5,12 @@ export function CloseIcon(props) {
     )
   }
 
+  export function Backbtn({onClick}){
+    return(
+      <svg id="svg6" onClick={onClick} className="w-6 cursor-pointer" clipRule="evenodd" fillRule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path className="fill-white" id="path2" d="m5.414 13 5.293 5.293c.39.39.39 1.024 0 1.414s-1.024.39-1.414 0l-7-7c-.391-.39-.391-1.024 0-1.414l7-7c.39-.39 1.024-.39 1.414 0s.39 1.024 0 1.414l-5.293 5.293h13.586c.796 0 1.559.316 2.121.879.563.562.879 1.325.879 2.121v3c0 .552-.448 1-1 1s-1-.448-1-1c0 0 0-1.608 0-3 0-.265-.105-.52-.293-.707-.187-.188-.442-.293-.707-.293z"></path></svg>
+    )
+  }
+  
 
   export function ScrollTopArrow(props) {
     const {className,pathclassName}=props

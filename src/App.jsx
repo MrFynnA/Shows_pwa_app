@@ -1,6 +1,6 @@
 import React, { useEffect, useState ,useMemo,useCallback} from 'react'
 import "./styles.css";
-import { CloseIcon } from './icons/icon';
+import { CloseIcon,Backbtn } from './icons/icon';
 import ShowList from './components/showList';
 import { useStore } from './store/store';
 import {FaStar} from 'react-icons/fa'
@@ -17,6 +17,7 @@ const App = () => {
     const showDetails=useStore(store=>store.showDetails)
     const setGenre=useStore(store=>store.setGenre)
     const setSearch=useStore(store=>store.setSearchValue)
+    const searchTerm=useStore(store=>store.searchTerm)
     const genre=useStore(store=>store.genre)
     const details= useMemo(() => showDetails, [showDetails])
 
@@ -168,6 +169,7 @@ const genres=[
         
         }
     </div>
+    {searchTerm && <div className='-mt-10 w-[90%] flex items-center gap-10 max-md:gap-6'><Backbtn onClick={()=>setSearch('')}/>showing results for "{searchTerm}"</div>}
         <ShowList shows={shows} isLoading={isLoading}/>
     </div>
     </div>
