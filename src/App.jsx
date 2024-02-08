@@ -1,6 +1,7 @@
 import React, { useEffect, useState ,useMemo,useCallback} from 'react'
 import "./styles.css";
 import { CloseIcon,Backbtn } from './icons/icon';
+import movieBck from './images/movieBck-trans.jpeg'
 import ShowList from './components/showList';
 import { useStore } from './store/store';
 import {FaStar} from 'react-icons/fa'
@@ -123,7 +124,10 @@ const genres=[
     </div>
     </div>)}
    
-    <div className='w-full  text-white'>
+    <div className='w-full  text-white relative z-10'>
+    <div id='bg-image' className='absolute -z-10 w-full max-lg:hidden brightness-[.2]'>
+          <img src={movieBck} alt='movieback' className='w-full'></img>
+      </div>
     <header className='w-full fixed top-0 py-4 bg-[rgba(63,63,63,0.67)] z-50 flex justify-center'>
     <div className='w-[90%] flex items-center justify-between'>
         <div id='sitetitle' className='font-bold text-white font-sans text-2xl flex items-center gap-2'>
