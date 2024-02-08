@@ -172,7 +172,7 @@ const genres=[
         ):(
             <form onSubmit={submitHandler} id='search-section' className='flex w-[35%] max-lg:w-[55%] max-md:w-full'>
             <div className='w-full max-md:w-full max-lg:w-full'>
-                <input onChange={(e)=>setSearchValue(e.target.value)} type='text' placeholder='search your favorite show...' className='w-full p-2 rounded-l-md !rounded-r-none border-r-2 border-gray-300 outline-none placeholder:text-gray-600 focus:border-black focus:ring-1 focus:ring-black text-black bg-gray-300 transition-colors duration-[0.5s] px-4' value={searchValue}/>
+                <input onChange={(e)=>setSearchValue(e.target.value)} type='text' placeholder='search your favorite show...' className='w-full p-2 rounded-l-md !rounded-r-none border-r-2 border-gray-300 outline-none placeholder:text-gray-600 max-md:placeholder:text-sm focus:border-black focus:ring-1 focus:ring-black text-black bg-gray-300 transition-colors duration-[0.5s] px-4' value={searchValue}/>
             </div>
             <button className='p-2 px-6 text-black bg-white rounded-r-md hover:bg-black hover:text-white' type='submit'>Search</button>
             </form>  
