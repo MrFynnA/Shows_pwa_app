@@ -14,7 +14,7 @@ const App = () => {
     const[shows,setShows]=useState([])
     const[popup,setPopup]=useState(false)
     const[searchValue,setSearchValue]=useState('')
-    const[find,setFind]=useState(false)
+    // const[find,setFind]=useState(false)
     const[isLoading,setIsLoading]=useState(false)
     const showDetails=useStore(store=>store.showDetails)
     const setGenre=useStore(store=>store.setGenre)
@@ -86,7 +86,7 @@ const submitHandler=(event)=>{
 //   console.log(searchValue)
      setGenre('')
     setSearch(searchValue)
-    setFind(true)
+    // setFind(true)
 }
 const genres=[
     'All',
@@ -103,7 +103,7 @@ const genres=[
   return (
     <>
    {popup && (<div id="backdrop" onClick={()=>setPopup(false)} className="z-[50] fixed left-0 right-0 top-0 bottom-0 backdrop-brightness-50 max-md:backdrop-brightness-50 !h-full !w-full" />)}
-    {popup && (<div className='!fixed -translate-x-2/4 -translate-y-2/4 z-[200] shadow-2xl left-2/4 top-1/2 !w-[75%] max-lg:!w-[85%] max-md:!w-full'>  <div className='w-full bg-slate-100 rounded-md relative animate-[pop_0.4s_ease-out] max-md:scale-[.8]'>
+    {popup && (<div className='!fixed -translate-x-2/4 -translate-y-2/4 z-[200] shadow-2xl left-2/4 top-1/2 !w-[75%] max-lg:!w-[85%] max-md:!w-full'>  <div className='w-full bg-slate-100 rounded-md relative md:animate-[pop_0.4s_ease-out] max-md:animate-[popMobile_0.4s_ease-out] max-md:scale-[.8]'>
        <header className='w-full md:pl-5 pl-2 select-none'>
         <div className="w-full  py-2 flex items-center gap-2"><div className=' text-3xl max-lg:text-2xl font-bold'>{details.name}</div></div>
         <div onClick={()=>setPopup(false)} className='group absolute right-3 max-md:right-1 top-2 p-2 rounded-md cursor-pointer'><CloseIcon pathClassName='!fill-slate-700 group-hover:!fill-red-600 !stroke-slate-900' className='!w-3 max-lg:!w-4'/></div>
@@ -144,18 +144,18 @@ const genres=[
                 
         ):(
         <div className='w-[50%] max-lg:w-full max-lg:justify-center max-md:justify-normal [&>*]:bg-[rgba(255,255,255,0.24)] [&>*]:p-1 [&>*]:px-2 [&>*]:rounded-md [&>*]:cursor-pointer hover:[&>*]:bg-[rgba(108,108,108,0.25)] flex gap-4 max-[1280px]:[&>*]:text-[1rem] items-center max-md:overflow-x-scroll max-md:py-3 scroll-smooth max-md:rounded-3xl max-md:px-4 select-none'>
-            {genres && genres?.map((item,idx)=><span className={`${genre===item?'!bg-black !drop-shadow-md':''} ${genre==='' && idx===0 && '!bg-black !drop-shadow-md'}`} key={idx} onClick={()=>{
+            {genres && genres?.map((item,idx)=><span className={`${genre===item?'!bg-black box-shadow drop-shadow-md':''} ${genre==='' && idx===0 && '!bg-black box-shadow drop-shadow-md'}`} key={idx} onClick={()=>{
                 if(idx===0){
                 setGenre('')
                 setSearch('')
-                setFind(false)
+                // setFind(false)
                 setSearchValue('')
                 }else{
 
                     setGenre(item)
                     setSearch('')
                     setSearchValue('')
-                    setFind(false)
+                    // setFind(false)
                 }
                 
                 }}>{item}</span>)}
@@ -182,7 +182,7 @@ const genres=[
     </div>
     {searchTerm && <div className='-mt-10 w-[90%] flex items-center gap-8 max-md:gap-6'><Backbtn onClick={()=>{
         setSearch('')
-        setFind(false)
+        // setFind(false)
 
         }}/>showing results for "{searchTerm}"</div>}
         <ShowList shows={shows} isLoading={isLoading}/>

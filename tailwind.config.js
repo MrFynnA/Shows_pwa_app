@@ -13,6 +13,10 @@ module.exports = {
                 pop: {
                     '0%': { transform: 'scale(0)' },
                     '100%': { transform: 'scale(1)' },
+                },
+                popMobile: {
+                    '0%': { transform: 'scale(0)' },
+                    '100%': { transform: 'scale(0.8)' },
                 }
             },
             animation: {
