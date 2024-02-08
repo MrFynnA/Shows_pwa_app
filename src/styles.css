@@ -9,3 +9,9 @@ body {
     background-color: #000000ec;
     position: relative;
 }
+
+@media (max-width:768px) {
+    body {
+        background-color: #000000e5;
+    }
+}
