@@ -143,7 +143,7 @@ const genres=[
               </div>
                 
         ):(
-        <div className='w-[50%] max-lg:w-full max-lg:justify-center max-md:justify-normal [&>*]:bg-light-white [&>*]:p-1 [&>*]:px-2 [&>*]:rounded-md [&>*]:cursor-pointer hover:[&>*]:bg-[rgba(108,108,108,0.25)] flex gap-4 max-[1280px]:[&>*]:text-[1rem] items-center max-md:overflow-x-scroll max-md:py-3 scroll-smooth max-md:rounded-3xl max-md:px-4 select-none'>
+        <div className='w-[50%] max-lg:w-full max-lg:justify-center max-md:justify-normal [&>*]:bg-[rgba(255,255,255,0.24)] [&>*]:p-1 [&>*]:px-2 [&>*]:rounded-md [&>*]:cursor-pointer hover:[&>*]:bg-[rgba(108,108,108,0.25)] flex gap-4 max-[1280px]:[&>*]:text-[1rem] items-center max-md:overflow-x-scroll max-md:py-3 scroll-smooth max-md:rounded-3xl max-md:px-4 select-none'>
             {genres && genres?.map((item,idx)=><span className={`${genre===item?'!bg-black !drop-shadow-md':''} ${genre==='' && idx===0 && '!bg-black !drop-shadow-md'}`} key={idx} onClick={()=>{
                 if(idx===0){
                 setGenre('')
