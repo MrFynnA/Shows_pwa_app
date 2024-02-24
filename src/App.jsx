@@ -7,7 +7,15 @@ import { useStore } from './store/store';
 import {FaStar} from 'react-icons/fa'
 import {FaPlay} from 'react-icons/fa'
 import GotoTop from './ui-elements/GoToTop';
-import siteLogo from './siteLogo/showhub.png'
+import siteLogo from './siteLogo/showhub.png';
+import Footer from './components/Footer'
+
+
+// import PdfFile from './components/pdf-file';
+// import { PDFDownloadLink } from "@react-pdf/renderer"
+
+
+
 
 
 const App = () => {
@@ -101,7 +109,7 @@ const genres=[
 ]
 
   return (
-    <>
+    <div className='w-full flex flex-col justify-between'>
    {popup && (<div id="backdrop" onClick={()=>setPopup(false)} className="z-[50] fixed left-0 right-0 top-0 bottom-0 backdrop-brightness-50 max-md:backdrop-brightness-50 !h-full !w-full" />)}
     {popup && (<div className='!fixed -translate-x-2/4 -translate-y-2/4 z-[200] shadow-2xl left-2/4 top-1/2 !w-[75%] max-lg:!w-[85%] max-md:!w-full'>  <div className='w-full bg-slate-100 rounded-md relative md:animate-[pop_0.4s_ease-out] max-md:animate-[popMobile_0.4s_ease-out] max-md:scale-[.8]'>
        <header className='w-full md:pl-5 pl-2 select-none'>
@@ -190,7 +198,8 @@ const genres=[
     </div>
     </div>
     <GotoTop/>
-    </>
+    {Object.keys(shows).length!==0 && <Footer/>}
+    </div>
   )
 }
 
